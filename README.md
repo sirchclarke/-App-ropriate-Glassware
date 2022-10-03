@@ -8,6 +8,42 @@
 
 ---
 
+##**_PsuedoCode_**##
+
+##**_landingPAge_**
+#HTML
+#simple entery portal
+
+##**_index_**
+
+## design for grid and match setup
+
+## grid/ flex grid for cell design and layout
+
+##**_JS frameWork_**
+
+# const beer
+
+# const glassWare
+
+# const grid
+
+# const landingPage
+
+# const restartButton
+
+#Functions
+
+#ForLoop
+
+#
+
+#random_Shuffle
+
+#Restart
+
+---
+
 ## **_Description_**
 
 ### The design of this game is a memory game where beer is to be matched with its appropriate glassware.
