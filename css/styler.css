@@ -1,0 +1,116 @@
+body{
+    margin:0;
+    background-color: burlywood;
+}
+//Beers
+#kolsch.0{
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2xq3SO9jg51xR36qy7c9pf1l8H1xiJzRTSlqlResSSOOnvd0aepy7QrkexjrDhy5GNPM&usqp=CAU");
+    background-size: 80% 80%;
+    background-repeat:no-repeat;
+    background-position:center;
+}
+
+#beers.saison{
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQr_cf_eQ0fnZrdfNJ5MZwYZeT-3hGMx4YdGQ&usqp=CAU");
+    background-size: 80% 80%;
+    background-repeat:no-repeat;
+    background-position:center;
+}
+#marzen.0{
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_QbG4rIAiFTFIa6AYhKVI91wXMdYabMT3RTHsIs6zT5tCQwep5ZWa070FQa677AVGb9A&usqp=CAU");
+    background-size: 80% 80%;
+    background-repeat:no-repeat;
+    background-position:center;
+}
+#trappist.0{
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiis_a5S5YGOo4aS9SN3E1nkbEe4glr1tAZA&usqp=CAU`");
+    background-size: 80% 80%;
+    background-repeat:no-repeat;
+    background-position:center;
+}
+#hefeweizen.0{
+    background-image: url("https://www.google.com/aclk?sa=l&ai=DChcSEwjHhdCK48X6AhUCB30KHakmBkMYABAFGgJwdg&sig=AOD64_1-Wegl76mpNQD6oeq0UJfP1mnZmA&adurl&ctype=46&ved=2ahUKEwj1tcCK48X6AhUHKVMKHTD_BtcQvhd6BAgBEH8");
+    background-size: 80% 80%;
+    background-repeat:no-repeat;
+    background-position:center;
+}
+#ipa.0{
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2xq3SO9jg51xR36qy7c9pf1l8H1xiJzRTSlqlResSSOOnvd0aepy7QrkexjrDhy5GNPM&usqp=CAU");
+    background-size: 80% 80%;
+    background-repeat:no-repeat;
+    background-position:center;
+}
+#lambic.0{
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2o9hK_oH4l9RTbnEbeebhk3i6-4cdsNj4FQ&usqp=CAU");
+    background-size: 80% 80%;
+    background-repeat:no-repeat;
+    background-position:center;
+}
+#bitter.0{
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRby7ck-edZlm-WHnRdjDGHSWsySazc3A1FhQ&usqp=CAU");
+    background-size: 80% 80%;
+    background-repeat:no-repeat;
+    background-position:center;
+}
+
+//glassware
+#stange.0{
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYCdMR9nPVifq5PLvSlycGMgZR_YwyzF9mMw&usqp=CAU");
+    background-size: 80% 80%;
+    background-repeat:no-repeat;
+    background-position:center;
+}
+
+#beers.tulip{
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTcGBesqF_Oh9Bn7gtVmQMUzlFfuv6dMA9wg&usqp=CAU");
+    background-size: 80% 80%;
+    background-repeat:no-repeat;
+    background-position:center;
+}
+#stein.0{
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbzuqCBJWEk0UhwV1EHSwy4NfAQpDAX6kewg&usqp=CAU");
+    background-size: 80% 80%;
+    background-repeat:no-repeat;
+    background-position:center;
+}
+#chalice.0{
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnD_n3eAj1WlxLENGq0CAvd__ecDrDEmAGTMHJfcUuXzcljj0cSwzqNLlHAQwZ7xqEPHo&usqp=CAU");
+    background-size: 80% 80%;
+    background-repeat:no-repeat;
+    background-position:center;
+}
+#weizenglass.0{
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS43IpOWBhbztJvrIJotPEjktK7YNllE0cPng&usqp=CAU");
+    background-size: 80% 80%;
+    background-repeat:no-repeat;
+    background-position:center;
+}
+#spiegelau.0{
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdT2f_2Vew8PrTCnZxSWNpfQGAcP_4dlJzeg&usqp=CAU");
+    background-size: 80% 80%;
+    background-repeat:no-repeat;
+    background-position:center;
+}
+#tumbler.0{
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZzLI6FC57A-rN5NkY_Oogc8pXy0ZLlwvoTA&usqp=CAU");
+    background-size: 80% 80%;
+    background-repeat:no-repeat;
+    background-position:center;
+}
+#nonic.0{
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRby7ck-edZlm-WHnRdjDGHSWsySazc3A1FhQ&usqp=CAU");
+    background-size: 80% 80%;
+    background-repeat:no-repeat;
+    background-position:center;
+}
+.cell{
+    width: var(--cell-size);
+    height:var(--cell-size);
+    border: 8px solid black;
+    display: flex;
+    Justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor:pointer;
+}
+
