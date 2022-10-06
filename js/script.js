@@ -165,18 +165,18 @@ let clicks = 0
 
 //////////////////////////
 
-const container = document.getElementById('container')
+// const container = document.getElementById('container')
 
 function makeRows(array1, array2) {
   const items = [...array1, ...array2]
 
-  container.style.setProperty('--grid-rows', items.length / 4)
-  container.style.setProperty('--grid-cols', items.length / 4)
+  grid.style.setProperty('--grid-rows', items.length / 4)
+  grid.style.setProperty('--grid-cols', items.length / 4)
   for (i = 0; i < items.length; i++) {
     let cell = document.createElement('div')
     cell.innerText = items[i].name
     cell.id = items[i].pair
-    container.appendChild(cell).className = 'grid-item'
+    grid.appendChild(cell).className = 'grid-item'
   }
 }
 
@@ -184,16 +184,16 @@ makeRows(beers, glass)
 
 ///////////////////////////
 //Grid-works
-document.addEventListener('DOMContentLoaded', function () {
-  // arrangeCell()
-  createBoard(grid, gridItems)
-  arrangeCell()
-  playAgain.addEventListener('click', replay)
+// document.addEventListener('DOMContentLoaded', function () {
+//   // arrangeCell()
+//   createFrame(grid, gridItems)
+//   arrangeCell()
+//   playAgain.addEventListener('click', replay)
 
-  ///////////click function for img
-  imgs = document.querySelectorAll('img')
-  Array.from(imgs).forEach((img) => img.addEventListener('click', flipCell))
-})
+///////////click function for img
+//   imgs = document.querySelectorAll('img')
+//   Array.from(imgs).forEach((img) => img.addEventListener('click', flipCell))
+// })
 
 //Arrange cellContent
 // function arrangeCell() {

@@ -231,10 +231,14 @@ button{
     transform: rotateY(0) rotateZ(0);
 }
 .grid{
-    width: var(--cell-size);
-    height:var(--cell-size);
+    width: 80vw;
+    height: max-content;
     border: 8px solid rgb(100, 42, 42);
     display: flex;
+    display: grid;
+    grid-gap: 1em;
+    grid-template-rows: repeat(var(--grid-rows), 1fr);
+    grid-template-columns: repeat(var(--grid-cols), 1fr);
     Justify-content: center;
     align-items: center;
     position: relative;
@@ -246,16 +250,20 @@ button{
     --grid-rows: 1;
   }
   
-  #container {
+  /* #container {
     display: grid;
     grid-gap: 1em;
     grid-template-rows: repeat(var(--grid-rows), 1fr);
     grid-template-columns: repeat(var(--grid-cols), 1fr);
-  }
+  } */
   
   .grid-item {
+    color: transparent;
+    
     padding: 1em;
     border: 1px solid rgb(54, 134, 98);
+    height: 250px;
+    width: 250px;
     text-align: center;
   }
   
