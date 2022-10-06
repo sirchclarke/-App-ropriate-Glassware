@@ -18,110 +18,108 @@ const state = {
 // console.log(playerXWins)
 
 // }
-////////////////////////////////
-//Objects for Beers
-const kolsch = {
-  group: 'a',
-  glass: stange
-}
-const saison = {
-  group: 'b',
-  glass: tulip
-}
-const marzen = {
-  group: 'c',
-  glass: stein
-}
-const trappist = {
-  group: 'd',
-  glass: chalice
-}
-const hefeweizen = {
-  group: 'e',
-  glass: weizenglass
-}
-const ipa = {
-  group: 'f',
-  glass: spiegelau
-}
-const lambic = {
-  group: 'g',
-  glass: tumbler
-}
-const bitter = {
-  group: 'h',
-  glass: nonic
+//////////////////////////////
+class Tile {
+  constructor(name, url, pair) {
+    this.name = name
+    this.url = url
+    this.pair = pair
+  }
 }
 
+//Objects for Beers
+const beers = [
+  new Tile('kolsch', 'url', 'stange'),
+  new Tile('saison', 'url', 'tulip'),
+  new Tile('marzen', 'url', 'stein'),
+  new Tile('trappist', 'url', 'chalice'),
+  new Tile('hefeweizen', 'url', 'weizenglass'),
+  new Tile('ipa', 'url', 'spiegelau'),
+  new Tile('lambic', 'url', 'tumbler'),
+  new Tile('bitter', 'url', 'nonic')
+]
 ////////////////////////////////
 //Objects for Glassware
+const glass = [
+  new Tile('stange', 'url', 'kolsch'),
+  new Tile('tulip', 'url', 'saison'),
+  new Tile('stein', 'url', 'marzen'),
+  new Tile('trappist', 'url', 'chalice'),
+  new Tile('weizenglass', 'url', 'hefeweizen'),
+  new Tile('spiegelau', 'url', 'ipa'),
+  new Tile('tumbler', 'url', 'lambic'),
+  new Tile('nonic', 'url', 'bitter')
+]
 
-const stange = {
-  group: 'a',
-  beer: kolsch
+//function for pairmatch
+const checkIsMatch = (tile1, tile2) => {
+  if (tile1.id === tile2.innerText) {
+    return true
+  }
+  return false
 }
-const tulip = {
-  group: 'b',
-  beer: saison
-}
-const stein = {
-  group: 'c',
-  beer: marzen
-}
-const chalice = {
-  group: 'd',
-  beer: trappist
-}
-const weizenglass = {
-  group: 'e',
-  beer: hefeweizen
-}
-const spiegelau = {
-  group: 'f',
-  beer: ipa
-}
-const tumbler = {
-  group: 'g',
-  beer: lambic
-}
-const nonic = {
-  group: 'h',
-  beer: bitter
-}
-
+// const glassBeersMap = {
+//   stange: 'kolsch',
+//   tulip: 'saison',
+//   stein: 'marzen',
+//   chalice: 'trappist',
+//   weizenglass: 'hefeweizen',
+//   spiegelau: 'ipa',
+//   tumbler: 'lambic',
+//   nonic: 'bitter'
+// }
+// const beersGlassMap = {
+//   kolsch: 'stange',
+//   saison: 'tulip',
+//   marzen: 'stein',
+//   trappist: 'chalice',
+//   hefeweizen: 'weizenglass',
+//   ipa: 'spiegelau',
+//   lambic: 'tumbler',
+//   bitter: 'nonic'
+// }
 /////////////////////////////////
 //Arrays for functions
-const beers = [
-  'kolsch',
-  'saison',
-  'marzen',
-  'trappist',
-  'hefeweizen',
-  'ipa',
-  'lambic',
-  'bitter'
-]
+// const beers = [
+//   kolsch,
+//   saison,
+//   marzen,
+//   trappist,
+//   hefeweizen,
+//   ipa,
+//   lambic,
+//   bitter
+// ]
 
-const glass = [
-  'stange',
-  'tulip',
-  'stein',
-  'chalice',
-  'weizenglass',
-  'spiegelau',
-  'tumbler',
-  'nonic'
-]
+// const glass = [
+//   stange,
+//   tulip,
+//   stein,
+//   chalice,
+//   weizenglass,
+//   spiegelau,
+//   tumbler,
+//   nonic
+// ]
 
 ////////////////////////////////
-// Functions For Game Logic Here
-const selectors = {
-  grid: document.querySelector('.grid'),
-  selection: document.querySelector('.selection'),
-  clock: document.querySelector('.clock'),
-  restartButton: document.getElementById('restartButton')
-}
+//Defined variables Game Logic Here
 
+const gridContainer = document.querySelector('.grid-container')
+const grid = document.querySelector('.grid')
+const selection = document.querySelector('.selection')
+const clickGrid = document.querySelector('.clickGrid')
+// clock: document.querySelector('.clock'),
+
+// restartButton: document.getElementById('restartButton'),
+const win = document.querySelector('.win')
+const start = document.querySelector('button')
+
+let img
+let cellId = []
+let cellsSelected = []
+let cellsPaired = 0
+let clicks = 0
 // const gridContent = document.getElementById('grid')
 // const winMessageText = document.getElementById('winMessageText')
 // const winMessageContent = document.getElementById('winMessage')
@@ -137,60 +135,212 @@ const selectors = {
 // cWins.innerText = playerOWins
 ////////////////////////////////
 // Generating the grid
-const startApp = () => {
-  const dimensions = selectors.grid.getAttribute('data-dimension')
-  if (dimensions % 2 !== 0) {
-    throw new Error('dimensions must be even')
-  }
+// document.addEventListener('loadGame',
+//   function () {
+//     arrangeCell()
+//     playAgain.addEventListener('click', replay)
 
-  const pairs = [beers, glass]
-  const pulls = pullsRandom(pairs, (dimensions * dimensions) / 2)
-  const items = shuffle([...pulls, ...pulls])
-  const flashes = `
-<div class="grid" style="grid-template-columns: repeat${dimensions}, auto)">
-${items
-  .map(
-    (item) => `
- <div class="bstyle">
- <div class"bstyle-face"></div>
- <div class"bstyle-blank">${item}</div>
- </div>
-
-   `
-  )
-  .join('')}
-   </div>
-`
-  const parser = new DOMParser().parseFromString(flashes, 'index/html')
-  selectors.grid.replaceWith(parser.querySelector('.grid'))
-}
+///click function for img
+imgs = document.querySelectorAll('img')
+Array.from(imgs).forEach((img) => img.addEventListener('click', flipCell))
 
 ////////////////////////////////
 // Shuffling through
-const pullsRandom = (array, items) => {
-  const cloneArray = [...array]
-  const randomPulls = []
-  for (let index = 0; index < items; index++) {
-    const randomIndex = Math.floor(math.random() * clonedArray.length)
-    randomPulls.push(cloneArray[randomIndex])
-    clonedArray.splice(randomIndex, 1)
+// const pullsRandom = (array, items) => {
+//   const cloneArray = [...array]
+//   const randomPulls = []
+//   for (let index = 0; index < items; index++) {
+//     const randomIndex = Math.floor(math.random() * cloneArray.length)
+//     randomPulls.push(cloneArray[randomIndex])
+//     cloneArray.splice(randomIndex, 1)
+//   }
+//   return randomPulls
+// }
+
+// const shuffle = (array) => {
+//   const cloneArray = [...array]
+
+//   for (let index = cloneArray.length - 1; index > 0; index--) {
+//     const randomIndex = Math.floor(Math.random() * (index + 1))
+//     const original = cloneArray[index]
+
+//     cloneArray[index] = cloneArray[randomIndex]
+//     cloneArray[randomIndex] = original
+//   }
+
+//   return cloneArray
+// }
+
+/////////////////////////
+// Event Listener
+// const eventListeners = () => {
+//   document.addEventListener('click', (event) => {
+//     const actionTaken = action.Taken
+//     const actionParent = actionTaken.parentElement
+
+//     if (
+//       actionTaken.className.includes('bstyle') &&
+//       !actionParent.className.includes('blank')
+//     ) {
+//       blankStyle(actionParent)
+//     } else if (
+//       actionTaken.nodeName === 'BUTTON' &&
+//       !actionTaken.className.includes('disabled')
+//     ) {
+//       startGame()
+//     }
+//   })
+// }
+// generateGame()
+// attacheventListeners()
+
+//////////////////////////
+//// Start game
+// const startGame = () => {
+//   state.gameStart = true
+//   selectors.start.classList.add('disabled')
+
+//   state.loop = setInterval(() => {
+//     state.totalTime++
+
+//     selectors.selection.innerText = `${state.totalSelected} move`
+//     selectors.clock.innerText = `time:${state.totalTime} sec`
+//   }, 1000)
+// }
+///////////////////////
+/// cellAppears
+// const cellAppear = (bstyle) => {
+//   state.selections++
+//   state.totalSelected++
+
+//   if (!state.gameStarted) {
+//     startGame()
+//   }
+//   if (state.selections <= 2) {
+//     bstyle.classList.add('appeared')
+//   }
+//   if (state.selections === 2) {
+//     const selections = document.querySelectorAll('.appeared:not(.matched')
+
+//     if (selections[0].innerText === selections[1].innerText) {
+//       selections[0].classList.add('matched')
+//       selections[1].classList.add('matched')
+//     }
+//     setTimeout(() => {
+//       disappearCells()
+//     }, 1000)
+//   }
+// }
+
+/////////////////////////
+////
+
+// const disappearCells = () => {
+//   document.querySelectorAll('.bstyle:not(.matched)').forEach((bstyle) => {
+//     bstyle.classList.remove('appeared')
+//   })
+//   state.selections = 0
+// }
+//////////////////////////
+//winnin
+// if (!document.querySelectorAll('.bstyle:not(.appeared').length) {
+//   setTimeout(() => {
+//     selectors.gridContainer.classList.add('appeared')
+//     selectors.win.innerHTML = `
+//     <span class="win-text">
+//       Mastered!<br/>
+//       with <span class="highlight">${state.totalSelected}</span> selection<br />
+//       under <span class="highlight">${state.totalTime}</span> seconds </span>`
+//     clearInterval(state.loop)
+//   }, 1000)
+// }
+const container = document.getElementById('container')
+
+function makeRows(array1, array2) {
+  const items = [...array1, ...array2]
+  console.log(container)
+  container.style.setProperty('--grid-rows', items.length / 4)
+  container.style.setProperty('--grid-cols', items.length / 4)
+  for (i = 0; i < items.length; i++) {
+    let cell = document.createElement('div')
+    cell.innerText = items[i].name
+    cell.id = items[i].pair
+    container.appendChild(cell).className = 'grid-item'
   }
-  return randomPulls
 }
 
-const shuffle = (array) => {
-  const cloneArray = [...array]
+makeRows(beers, glass)
 
-  for (let index = cloneArray.length - 1; index > 0; index--) {
-    const randomPulls = Math.floor(Math.random() * (index + 1))
-    const original = cloneArray[index]
+////////
+//Grid-works
+document.addEventListener('DOMContentLoaded', function () {
+  // arrangeCell()
+  // playAgain.addEventListener('click', replay)
+  ///click function for img
+  //   imgs = document.querySelectorAll('img')
+  //   Array.from(imgs).forEach((img) => img.addEventListener('click', flipCell))
+})
 
-    cloneArray[index] = cloneArray[randomIndex]
-    cloneArray[randomIndex] = original
+//Arrange cellContent
+// function arrangeCell() {
+//   beers, glass.sort(() => 0.5 - Math.random())
+// }
+// Flipping Cells
+const gridItems = document.querySelectorAll('.grid-item')
+
+gridItems.forEach((item) => {
+  item.addEventListener('click', flipCell)
+})
+
+function flipCell(e) {
+  cellsSelected.push(e.target)
+  e.target.classList.add('flip')
+  // e.target.setAttribute('src', [selected].img)
+  if (cellsSelected.length === 2) {
+    //     cardsWon += 1;
+    // scoreBoard.innerHTML = cardsWon;
+    // setTimeout(checkWon,500)
+    if (checkIsMatch(cellsSelected[0], cellsSelected[1])) {
+      alert
+    } else {
+      //       imgs[firstCard].setAttribute("src", "blank.png");
+      // imgs[secondCard].setAttribute("src", "blank.png"); alert("wrong, please try again"); imgs[firstCard].classList.remove("flip"); imgs[secondCard].classList.remove("flip");
+      console.log('not a match')
+    }
+    //     cardsSelected = [];
+    // cardsId = [];
+    // clicks += 1;
+    // clickBoard.innerHTML = clicks;
+    //
   }
-
-  return clonedArray
 }
+// setTimeout(checkIsMatch, 500)
+
+//////Pair Check
+
+// Generating the grid
+
+//   const items = shuffle([...beers, ...glass])
+//   const flashes = `
+// <div class="grid" style="grid-template-columns: repeat${dimensions}, auto)">
+// ${items
+//   .map(
+//     (item) => `
+//  <div class="bstyle">
+//  <div class"bstyle-face"></div>
+//  <div class"bstyle-blank">${item}</div>
+//  </div>
+
+//    `
+//   )
+//   .join('')}
+//    </div>
+// `
+// const forEach
+//   const parser = new DOMParser().parseFromString(flashes, 'index/html')
+//   selectors.grid.replaceWith(parser.querySelector('.grid'))
+// }
+
 // function startGame() {
 //   Player_O_Turn = false
 //   // winMessageContent.classList.remove('show')

@@ -1,7 +1,48 @@
+:root {
+    --cell-size:200px;
+    
+    --color: #6E7D83;
+    --color-set:#0a0b0b; 
+    --line: 10px;
+    }
+    .game{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
 body{
     margin:0;
     background-color: burlywood;
 }
+button{
+    cursor: pointer;
+}
+.enterButton {
+    display: inline-block;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #7aa8b7;
+    border-radius: 6px;
+    outline: none;
+  }
+  .restartButton {
+    display: inline-block;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #7aa8b7;
+    border-radius: 6px;
+    outline: none;
+  }
+
+  .disable{
+    color: #100f0f
+    ;
+  }
 //Beers
 #kolsch.0{
     background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2xq3SO9jg51xR36qy7c9pf1l8H1xiJzRTSlqlResSSOOnvd0aepy7QrkexjrDhy5GNPM&usqp=CAU");
@@ -113,4 +154,66 @@ body{
     position: relative;
     cursor:pointer;
 }
+////////////////////////////////
+////Game Design
+.bstyle{
+    position: relative;
+    width: 100px;
+    height: 100px;  
+    cursor: pointer;
+}
+.bstyle-face,
+.bstyle-blank{
+    position: absolute;
+    border-radius: 10px;
+    width: 100px;
+    height: 100px;  
+    background: grey;
+    transition: transform .5s cubic-bezier(.4,0,.2,1);
+   backface-visibility: hidden ;
+}
+.bstyle-blank {
+    font-size: 28pt;
+    text-align: center;
+    line-height: 100px;
+    background: #FDF8E6;
+    transform: rotateY(180deg) rotateZ(50deg);
+    user-select: none;
+}
 
+.bstyle.appeared .bstyle-face {
+    transform: rotateY(180deg) rotateZ(50deg);
+}
+
+.bstyle.appeared .bstyle-blank {
+    transform: rotateY(0) rotateZ(0);
+}
+.grid{
+    width: var(--cell-size);
+    height:var(--cell-size);
+    border: 8px solid black;
+    display: flex;
+    Justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor:pointer;
+}
+
+:root {
+    --grid-cols: 1;
+    --grid-rows: 1;
+  }
+  
+  #container {
+    display: grid;
+    grid-gap: 1em;
+    grid-template-rows: repeat(var(--grid-rows), 1fr);
+    grid-template-columns: repeat(var(--grid-cols), 1fr);
+  }
+  
+  .grid-item {
+    padding: 1em;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+  
