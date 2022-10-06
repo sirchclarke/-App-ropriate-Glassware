@@ -1,5 +1,5 @@
 :root {
-    --cell-size:200px;
+    --cell-size:1000px;
     
     --color: #6E7D83;
     --color-set:#0a0b0b; 
@@ -11,10 +11,10 @@
         left: 50%;
         transform: translate(-50%,-50%);
     }
-body{
+/* body{
     margin:0;
     background-color: burlywood;
-}
+} */
 button{
     cursor: pointer;
 }
@@ -38,7 +38,49 @@ button{
     border-radius: 6px;
     outline: none;
   }
-
+  .grid { 
+    width: 90%; 
+    height: 300px; 
+    display: flex; 
+    flex-wrap: wrap; 
+    margin: 60px auto; 
+    } 
+    
+    .grid img { 
+    margin: 2px; 
+    transform-style: preserve-3d; 
+    transition: transform 0.5s; 
+    } 
+    
+    .grid img.flip { 
+    transform: rotateY(180deg); 
+    } 
+    
+    .popup { 
+    background: red; 
+    width: 200px; 
+    height: 200px; 
+    z-index:20;
+    position: fixed; 
+    top: 100px;
+    left: 100px; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    flex-direction: column;
+    }
+    
+    .data { 
+    display: flex; 
+    justify-content: space-between; 
+    padding: 20px 30px; 
+    font-size: 23px; 
+    } 
+    
+    .data span { 
+    color: rgb(25, 4, 62);
+    font-size: 30px; 
+    }
   .disable{
     color: #100f0f
     ;
@@ -147,7 +189,7 @@ button{
 .cell{
     width: var(--cell-size);
     height:var(--cell-size);
-    border: 8px solid black;
+    border: 8px solid rgb(59, 51, 51);
     display: flex;
     Justify-content: center;
     align-items: center;
@@ -191,7 +233,7 @@ button{
 .grid{
     width: var(--cell-size);
     height:var(--cell-size);
-    border: 8px solid black;
+    border: 8px solid rgb(100, 42, 42);
     display: flex;
     Justify-content: center;
     align-items: center;
@@ -213,7 +255,7 @@ button{
   
   .grid-item {
     padding: 1em;
-    border: 1px solid #ddd;
+    border: 1px solid rgb(54, 134, 98);
     text-align: center;
   }
   

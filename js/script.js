@@ -20,23 +20,63 @@ const state = {
 // }
 //////////////////////////////
 class Tile {
-  constructor(name, url, pair) {
-    this.name = name
-    this.url = url
+  constructor(id, img, pair) {
+    this.name = id
+    this.url = img
     this.pair = pair
   }
 }
 
 //Objects for Beers
 const beers = [
-  new Tile('kolsch', 'url', 'stange'),
-  new Tile('saison', 'url', 'tulip'),
-  new Tile('marzen', 'url', 'stein'),
-  new Tile('trappist', 'url', 'chalice'),
-  new Tile('hefeweizen', 'url', 'weizenglass'),
-  new Tile('ipa', 'url', 'spiegelau'),
-  new Tile('lambic', 'url', 'tumbler'),
-  new Tile('bitter', 'url', 'nonic')
+  new Tile(
+    'kolsch',
+    (img.src =
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2xq3SO9jg51xR36qy7c9pf1l8H1xiJzRTSlqlResSSOOnvd0aepy7QrkexjrDhy5GNPM&usqp=CAU'),
+    'stange'
+  ),
+  new Tile(
+    'saison',
+    (img.src =
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQr_cf_eQ0fnZrdfNJ5MZwYZeT-3hGMx4YdGQ&usqp=CAU'),
+    'tulip'
+  ),
+  new Tile(
+    'marzen',
+    (img.src =
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_QbG4rIAiFTFIa6AYhKVI91wXMdYabMT3RTHsIs6zT5tCQwep5ZWa070FQa677AVGb9A&usqp=CAU'),
+    'stein'
+  ),
+  new Tile(
+    'trappist',
+    (img.src =
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiis_a5S5YGOo4aS9SN3E1nkbEe4glr1tAZA&usqp=CAU`'),
+    'chalice'
+  ),
+  new Tile(
+    'hefeweizen',
+    (img.src =
+      'https://www.google.com/aclk?sa=l&ai=DChcSEwjHhdCK48X6AhUCB30KHakmBkMYABAFGgJwdg&sig=AOD64_1-Wegl76mpNQD6oeq0UJfP1mnZmA&adurl&ctype=46&ved=2ahUKEwj1tcCK48X6AhUHKVMKHTD_BtcQvhd6BAgBEH8'),
+    'weizenglass'
+  ),
+  new Tile(
+    'ipa',
+    (img.src =
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2xq3SO9jg51xR36qy7c9pf1l8H1xiJzRTSlqlResSSOOnvd0aepy7QrkexjrDhy5GNPM&usqp=CAU'),
+    'spiegelau'
+  ),
+  new Tile(
+    'lambic',
+    (img.src =
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2o9hK_oH4l9RTbnEbeebhk3i6-4cdsNj4FQ&usqp=CAU'),
+    'tumbler'
+  ),
+  new Tile(
+    'bitter',
+    (img.src =
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRby7ck-edZlm-WHnRdjDGHSWsySazc3A1FhQ&usqp=CAU'),
+    'nonic'
+  )
 ]
 ////////////////////////////////
 //Objects for Glassware
@@ -44,7 +84,7 @@ const glass = [
   new Tile('stange', 'url', 'kolsch'),
   new Tile('tulip', 'url', 'saison'),
   new Tile('stein', 'url', 'marzen'),
-  new Tile('trappist', 'url', 'chalice'),
+  new Tile('chalice', 'url', 'trappist'),
   new Tile('weizenglass', 'url', 'hefeweizen'),
   new Tile('spiegelau', 'url', 'ipa'),
   new Tile('tumbler', 'url', 'lambic'),
@@ -58,56 +98,15 @@ const checkIsMatch = (tile1, tile2) => {
   }
   return false
 }
-// const glassBeersMap = {
-//   stange: 'kolsch',
-//   tulip: 'saison',
-//   stein: 'marzen',
-//   chalice: 'trappist',
-//   weizenglass: 'hefeweizen',
-//   spiegelau: 'ipa',
-//   tumbler: 'lambic',
-//   nonic: 'bitter'
-// }
-// const beersGlassMap = {
-//   kolsch: 'stange',
-//   saison: 'tulip',
-//   marzen: 'stein',
-//   trappist: 'chalice',
-//   hefeweizen: 'weizenglass',
-//   ipa: 'spiegelau',
-//   lambic: 'tumbler',
-//   bitter: 'nonic'
-// }
-/////////////////////////////////
-//Arrays for functions
-// const beers = [
-//   kolsch,
-//   saison,
-//   marzen,
-//   trappist,
-//   hefeweizen,
-//   ipa,
-//   lambic,
-//   bitter
-// ]
-
-// const glass = [
-//   stange,
-//   tulip,
-//   stein,
-//   chalice,
-//   weizenglass,
-//   spiegelau,
-//   tumbler,
-//   nonic
-// ]
 
 ////////////////////////////////
 //Defined variables Game Logic Here
 
-const gridContainer = document.querySelector('.grid-container')
 const grid = document.querySelector('.grid')
+const scoreBoard = document.querySelector('.scoreBoard')
 const selection = document.querySelector('.selection')
+let popup = document.querySelector('.popup')
+let playAgain = document.querySelector('.playAgain')
 const clickGrid = document.querySelector('.clickGrid')
 // clock: document.querySelector('.clock'),
 
@@ -120,25 +119,6 @@ let cellId = []
 let cellsSelected = []
 let cellsPaired = 0
 let clicks = 0
-// const gridContent = document.getElementById('grid')
-// const winMessageText = document.getElementById('winMessageText')
-// const winMessageContent = document.getElementById('winMessage')
-// const youTurnText = document.getElementById('youTurnText')
-// const gWins = document.getElementById('gWins')
-// const cWins = document.getElementById('cWins')
-// const restartButton = document.getElementById('restartButton')
-
-////////////////////////////////
-// Event Listeners Here
-// gWins.innerText = playerXWins
-
-// cWins.innerText = playerOWins
-////////////////////////////////
-// Generating the grid
-// document.addEventListener('loadGame',
-//   function () {
-//     arrangeCell()
-//     playAgain.addEventListener('click', replay)
 
 ///click function for img
 imgs = document.querySelectorAll('img')
@@ -258,7 +238,7 @@ const container = document.getElementById('container')
 
 function makeRows(array1, array2) {
   const items = [...array1, ...array2]
-  console.log(container)
+
   container.style.setProperty('--grid-rows', items.length / 4)
   container.style.setProperty('--grid-cols', items.length / 4)
   for (i = 0; i < items.length; i++) {
@@ -275,10 +255,14 @@ makeRows(beers, glass)
 //Grid-works
 document.addEventListener('DOMContentLoaded', function () {
   // arrangeCell()
+  createBoard(grid, gridItems)
+  arrangeCell()
+  playAgain.addEventListener('click', replay)
+
   // playAgain.addEventListener('click', replay)
   ///click function for img
-  //   imgs = document.querySelectorAll('img')
-  //   Array.from(imgs).forEach((img) => img.addEventListener('click', flipCell))
+  imgs = document.querySelectorAll('img')
+  Array.from(imgs).forEach((img) => img.addEventListener('click', flipCell))
 })
 
 //Arrange cellContent
@@ -297,158 +281,40 @@ function flipCell(e) {
   e.target.classList.add('flip')
   // e.target.setAttribute('src', [selected].img)
   if (cellsSelected.length === 2) {
-    //     cardsWon += 1;
-    // scoreBoard.innerHTML = cardsWon;
-    // setTimeout(checkWon,500)
+    cellsPaired += 1
+    scoreBoard.innerHTML = cellsPaired
+    setTimeout(checkIsMatch, 500)
     if (checkIsMatch(cellsSelected[0], cellsSelected[1])) {
-      alert
     } else {
+      // const erMsg = document.getElementById('erMsg')
+      // erMsg.style.display = 'visible'
       //       imgs[firstCard].setAttribute("src", "blank.png");
       // imgs[secondCard].setAttribute("src", "blank.png"); alert("wrong, please try again"); imgs[firstCard].classList.remove("flip"); imgs[secondCard].classList.remove("flip");
       console.log('not a match')
     }
-    //     cardsSelected = [];
-    // cardsId = [];
-    // clicks += 1;
-    // clickBoard.innerHTML = clicks;
-    //
+    cellsSelected = []
+    cellId = []
+    clicks += 1
+    clickGrid.innerHTML = clicks
+  }
+  function checkWon() {
+    if (cellsPaired == gridItems.length / 2) {
+      alert('win!')
+      setTimeout(() => (popup.style.display = 'flex'), 300)
+    }
   }
 }
 // setTimeout(checkIsMatch, 500)
-
+function replay() {
+  arrangeCell()
+  grid.innerHTML = ''
+  createFrame(grid, gridItems)
+  cellsPaired = 0
+  clicks = 0
+  clickBoard.innerHTML = 0
+  scoreBoard.innerHTML = 0
+  popup.style.display = 'none'
+}
 //////Pair Check
 
 // Generating the grid
-
-//   const items = shuffle([...beers, ...glass])
-//   const flashes = `
-// <div class="grid" style="grid-template-columns: repeat${dimensions}, auto)">
-// ${items
-//   .map(
-//     (item) => `
-//  <div class="bstyle">
-//  <div class"bstyle-face"></div>
-//  <div class"bstyle-blank">${item}</div>
-//  </div>
-
-//    `
-//   )
-//   .join('')}
-//    </div>
-// `
-// const forEach
-//   const parser = new DOMParser().parseFromString(flashes, 'index/html')
-//   selectors.grid.replaceWith(parser.querySelector('.grid'))
-// }
-
-// function startGame() {
-//   Player_O_Turn = false
-//   // winMessageContent.classList.remove('show')
-
-//   cellContent.forEach((cell) => {
-//     cell.classList.remove(Player_X_Class)
-//     cell.classList.remove(Player_O_Class)
-//     cell.removeEventListener('click', handleCellClick)
-//     cell.addEventListener('click', handleCellClick, { when: true })
-//   })
-// }
-// function reload() {
-//   // window.location.reload()
-//   //key values
-//   let params = [
-//     'playerXWins=' + playerXWins.toString(),
-//     'playerOWins=' + playerOWins.toString()
-//   ]
-//   console.log(playerXWins, playerOWins, params)
-//   // Reload creating visual studio
-//   window.location.href =
-//     'http://' +
-//     window.location.host +
-//     window.location.pathname +
-//     '?' +
-//     params.join('&')
-// }
-// startGame()
-// // const playGame = () => {
-// //   const name = prompt('Hello, What is your name?')
-// // }
-// restartButton.addEventListener('click', reload)
-
-// function handleCellClick(e) {
-//   const cell = e.target
-//   console.log('click')
-//   currentClass = Player_O_Turn ? Player_O_Class : Player_X_Class
-//   makeMove(cell, currentClass)
-
-//   if (checkWin(currentClass)) {
-//     endGame(false)
-//   } else if (isDraw()) {
-//     endGame(true)
-//   } else {
-//     swapTurns()
-//   }
-//   youTurn()
-// }
-
-// // cellclick
-
-// //WinorDraw
-// function endGame(draw) {
-//   if (draw) {
-//     winMessageText.innerText = 'Draw!'
-//   } else {
-//     winMessageText.innerText = `Player ${
-//       Player_O_Turn ? 'Casey Becker' : 'Ghostface'
-//     } Wins!`
-//     if (Player_O_Turn) {
-//       playerOWins++
-//     } else {
-//       playerXWins++
-//     }
-//     winMessageContent.classList.add('show')
-//   }
-// }
-
-// function isDraw() {
-//   return [...cellContent].every((cell) => {
-//     return (
-//       cell.classList.contains(Player_X_Class) ||
-//       cell.classList.contains(Player_O_Class)
-//     )
-//   })
-// }
-// function makeMove(cell, currentClass) {
-//   cell.classList.add(currentClass)
-// }
-// // if (0 === ifPlayer_O_Turn) {
-// //   alert('Begin the Game. Ghostface its your turn!')
-// // }
-
-// function youTurn() {
-//   if (currentClass === Player_X_Class) {
-//     console.log(currentClass)
-//     youTurnText.innerText = 'CASEY TURN.'
-//   } else if (currentClass === Player_O_Class) {
-//     console.log(currentClass)
-//     youTurnText.innerText = 'GHOSTFACE TURN.'
-//   }
-// }
-// // function counter(){
-// //   if (winMessageText.innerText = `Player ${
-// //     Player_O_Turn ? 'Ghostface'
-// //   } Wins!` === number+1
-// // }
-
-// function swapTurns() {
-//   Player_O_Turn = !Player_O_Turn
-// }
-
-// //WinorDraw
-// function checkWin(currentClass) {
-//   return Winning_Outcomes.some((combination) => {
-//     return combination.every((index) => {
-//       return cellContent[index].classList.contains(currentClass)
-//     })
-//   })
-// }
-////////////////////////////////
