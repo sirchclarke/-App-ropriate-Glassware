@@ -1,23 +1,13 @@
 ////////////////////////////////
 // Global Variables Here
-const state = {
-  beginMatch: false,
-  selections: 0,
-  totalSelected: 0,
-  totalTime: 0,
-  loop: null
-}
-// let playerXWins = queryParams.get('playerXWins')
-// let playerOWins = queryParams.get('playerOWins')
-// if (!playerXWins) {
-//   playerXWins = 0
+// const state = {
+//   beginMatch: false,
+//   selections: 0,
+//   totalSelected: 0,
+//   totalTime: 0,
+//   loop: null
 // }
-// if (!playerOWins) {
-//   playerOWins = 0
-// }
-// console.log(playerXWins)
 
-// }
 //////////////////////////////
 class Tile {
   constructor(id, img, pair) {
@@ -26,69 +16,93 @@ class Tile {
     this.pair = pair
   }
 }
-
+//////////////////////////////////
 //Objects for Beers
 const beers = [
   new Tile(
     'kolsch',
-    (img.src =
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2xq3SO9jg51xR36qy7c9pf1l8H1xiJzRTSlqlResSSOOnvd0aepy7QrkexjrDhy5GNPM&usqp=CAU'),
+    // 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2xq3SO9jg51xR36qy7c9pf1l8H1xiJzRTSlqlResSSOOnvd0aepy7QrkexjrDhy5GNPM&usqp=CAU',
     'stange'
   ),
   new Tile(
     'saison',
-    (img.src =
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQr_cf_eQ0fnZrdfNJ5MZwYZeT-3hGMx4YdGQ&usqp=CAU'),
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQr_cf_eQ0fnZrdfNJ5MZwYZeT-3hGMx4YdGQ&usqp=CAU',
     'tulip'
   ),
   new Tile(
     'marzen',
-    (img.src =
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_QbG4rIAiFTFIa6AYhKVI91wXMdYabMT3RTHsIs6zT5tCQwep5ZWa070FQa677AVGb9A&usqp=CAU'),
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_QbG4rIAiFTFIa6AYhKVI91wXMdYabMT3RTHsIs6zT5tCQwep5ZWa070FQa677AVGb9A&usqp=CAU',
     'stein'
   ),
   new Tile(
     'trappist',
-    (img.src =
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiis_a5S5YGOo4aS9SN3E1nkbEe4glr1tAZA&usqp=CAU`'),
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiis_a5S5YGOo4aS9SN3E1nkbEe4glr1tAZA&usqp=CAU`',
     'chalice'
   ),
   new Tile(
     'hefeweizen',
-    (img.src =
-      'https://www.google.com/aclk?sa=l&ai=DChcSEwjHhdCK48X6AhUCB30KHakmBkMYABAFGgJwdg&sig=AOD64_1-Wegl76mpNQD6oeq0UJfP1mnZmA&adurl&ctype=46&ved=2ahUKEwj1tcCK48X6AhUHKVMKHTD_BtcQvhd6BAgBEH8'),
+    'https://www.google.com/aclk?sa=l&ai=DChcSEwjHhdCK48X6AhUCB30KHakmBkMYABAFGgJwdg&sig=AOD64_1-Wegl76mpNQD6oeq0UJfP1mnZmA&adurl&ctype=46&ved=2ahUKEwj1tcCK48X6AhUHKVMKHTD_BtcQvhd6BAgBEH8',
     'weizenglass'
   ),
   new Tile(
     'ipa',
-    (img.src =
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2xq3SO9jg51xR36qy7c9pf1l8H1xiJzRTSlqlResSSOOnvd0aepy7QrkexjrDhy5GNPM&usqp=CAU'),
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2xq3SO9jg51xR36qy7c9pf1l8H1xiJzRTSlqlResSSOOnvd0aepy7QrkexjrDhy5GNPM&usqp=CAU',
     'spiegelau'
   ),
   new Tile(
     'lambic',
-    (img.src =
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2o9hK_oH4l9RTbnEbeebhk3i6-4cdsNj4FQ&usqp=CAU'),
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2o9hK_oH4l9RTbnEbeebhk3i6-4cdsNj4FQ&usqp=CAU',
     'tumbler'
   ),
   new Tile(
     'bitter',
-    (img.src =
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRby7ck-edZlm-WHnRdjDGHSWsySazc3A1FhQ&usqp=CAU'),
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRby7ck-edZlm-WHnRdjDGHSWsySazc3A1FhQ&usqp=CAU',
     'nonic'
   )
 ]
 ////////////////////////////////
 //Objects for Glassware
 const glass = [
-  new Tile('stange', 'url', 'kolsch'),
-  new Tile('tulip', 'url', 'saison'),
-  new Tile('stein', 'url', 'marzen'),
-  new Tile('chalice', 'url', 'trappist'),
-  new Tile('weizenglass', 'url', 'hefeweizen'),
-  new Tile('spiegelau', 'url', 'ipa'),
-  new Tile('tumbler', 'url', 'lambic'),
-  new Tile('nonic', 'url', 'bitter')
+  new Tile(
+    'stange',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYCdMR9nPVifq5PLvSlycGMgZR_YwyzF9mMw&usqp=CAU',
+    'kolsch'
+  ),
+  new Tile(
+    'tulip',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTcGBesqF_Oh9Bn7gtVmQMUzlFfuv6dMA9wg&usqp=CAU',
+    'saison'
+  ),
+  new Tile(
+    'stein',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbzuqCBJWEk0UhwV1EHSwy4NfAQpDAX6kewg&usqp=CAU',
+    'marzen'
+  ),
+  new Tile(
+    'chalice',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnD_n3eAj1WlxLENGq0CAvd__ecDrDEmAGTMHJfcUuXzcljj0cSwzqNLlHAQwZ7xqEPHo&usqp=CAU',
+    'trappist'
+  ),
+  new Tile(
+    'weizenglass',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS43IpOWBhbztJvrIJotPEjktK7YNllE0cPng&usqp=CAU',
+    'hefeweizen'
+  ),
+  new Tile(
+    'spiegelau',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdT2f_2Vew8PrTCnZxSWNpfQGAcP_4dlJzeg&usqp=CAU',
+    'ipa'
+  ),
+  new Tile(
+    'tumbler',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZzLI6FC57A-rN5NkY_Oogc8pXy0ZLlwvoTA&usqp=CAU',
+    'lambic'
+  ),
+  new Tile(
+    'nonic',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRby7ck-edZlm-WHnRdjDGHSWsySazc3A1FhQ&usqp=CAU',
+    'bitter'
+  )
 ]
 
 //function for pairmatch
@@ -114,15 +128,11 @@ const clickGrid = document.querySelector('.clickGrid')
 const win = document.querySelector('.win')
 const start = document.querySelector('button')
 
-let img
+let imgs
 let cellId = []
 let cellsSelected = []
 let cellsPaired = 0
 let clicks = 0
-
-///click function for img
-imgs = document.querySelectorAll('img')
-Array.from(imgs).forEach((img) => img.addEventListener('click', flipCell))
 
 ////////////////////////////////
 // Shuffling through
@@ -152,88 +162,9 @@ Array.from(imgs).forEach((img) => img.addEventListener('click', flipCell))
 // }
 
 /////////////////////////
-// Event Listener
-// const eventListeners = () => {
-//   document.addEventListener('click', (event) => {
-//     const actionTaken = action.Taken
-//     const actionParent = actionTaken.parentElement
-
-//     if (
-//       actionTaken.className.includes('bstyle') &&
-//       !actionParent.className.includes('blank')
-//     ) {
-//       blankStyle(actionParent)
-//     } else if (
-//       actionTaken.nodeName === 'BUTTON' &&
-//       !actionTaken.className.includes('disabled')
-//     ) {
-//       startGame()
-//     }
-//   })
-// }
-// generateGame()
-// attacheventListeners()
 
 //////////////////////////
-//// Start game
-// const startGame = () => {
-//   state.gameStart = true
-//   selectors.start.classList.add('disabled')
 
-//   state.loop = setInterval(() => {
-//     state.totalTime++
-
-//     selectors.selection.innerText = `${state.totalSelected} move`
-//     selectors.clock.innerText = `time:${state.totalTime} sec`
-//   }, 1000)
-// }
-///////////////////////
-/// cellAppears
-// const cellAppear = (bstyle) => {
-//   state.selections++
-//   state.totalSelected++
-
-//   if (!state.gameStarted) {
-//     startGame()
-//   }
-//   if (state.selections <= 2) {
-//     bstyle.classList.add('appeared')
-//   }
-//   if (state.selections === 2) {
-//     const selections = document.querySelectorAll('.appeared:not(.matched')
-
-//     if (selections[0].innerText === selections[1].innerText) {
-//       selections[0].classList.add('matched')
-//       selections[1].classList.add('matched')
-//     }
-//     setTimeout(() => {
-//       disappearCells()
-//     }, 1000)
-//   }
-// }
-
-/////////////////////////
-////
-
-// const disappearCells = () => {
-//   document.querySelectorAll('.bstyle:not(.matched)').forEach((bstyle) => {
-//     bstyle.classList.remove('appeared')
-//   })
-//   state.selections = 0
-// }
-//////////////////////////
-//winnin
-// if (!document.querySelectorAll('.bstyle:not(.appeared').length) {
-//   setTimeout(() => {
-//     selectors.gridContainer.classList.add('appeared')
-//     selectors.win.innerHTML = `
-//     <span class="win-text">
-//       Mastered!<br/>
-//       with <span class="highlight">${state.totalSelected}</span> selection<br />
-//       under <span class="highlight">${state.totalTime}</span> seconds </span>`
-//     clearInterval(state.loop)
-//   }, 1000)
-// }
 const container = document.getElementById('container')
 
 function makeRows(array1, array2) {
@@ -251,7 +182,7 @@ function makeRows(array1, array2) {
 
 makeRows(beers, glass)
 
-////////
+///////////////////////////
 //Grid-works
 document.addEventListener('DOMContentLoaded', function () {
   // arrangeCell()
@@ -259,8 +190,7 @@ document.addEventListener('DOMContentLoaded', function () {
   arrangeCell()
   playAgain.addEventListener('click', replay)
 
-  // playAgain.addEventListener('click', replay)
-  ///click function for img
+  ///////////click function for img
   imgs = document.querySelectorAll('img')
   Array.from(imgs).forEach((img) => img.addEventListener('click', flipCell))
 })
@@ -286,8 +216,6 @@ function flipCell(e) {
     setTimeout(checkIsMatch, 500)
     if (checkIsMatch(cellsSelected[0], cellsSelected[1])) {
     } else {
-      // const erMsg = document.getElementById('erMsg')
-      // erMsg.style.display = 'visible'
       //       imgs[firstCard].setAttribute("src", "blank.png");
       // imgs[secondCard].setAttribute("src", "blank.png"); alert("wrong, please try again"); imgs[firstCard].classList.remove("flip"); imgs[secondCard].classList.remove("flip");
       console.log('not a match')
@@ -297,6 +225,9 @@ function flipCell(e) {
     clicks += 1
     clickGrid.innerHTML = clicks
   }
+
+  ///////////////////////////////////////////////////////
+  //pairchecked
   function checkWon() {
     if (cellsPaired == gridItems.length / 2) {
       alert('win!')
@@ -315,6 +246,3 @@ function replay() {
   scoreBoard.innerHTML = 0
   popup.style.display = 'none'
 }
-//////Pair Check
-
-// Generating the grid
