@@ -193,3 +193,86 @@
 //   function () {
 //     arrangeCell()
 //     playAgain.addEventListener('click', replay)
+
+
+//// Start game
+// const startGame = () => {
+//   state.gameStart = true
+//   selectors.start.classList.add('disabled')
+
+//   state.loop = setInterval(() => {
+//     state.totalTime++
+
+//     selectors.selection.innerText = `${state.totalSelected} move`
+//     selectors.clock.innerText = `time:${state.totalTime} sec`
+//   }, 1000)
+// }
+///////////////////////
+/// cellAppears
+// const cellAppear = (bstyle) => {
+//   state.selections++
+//   state.totalSelected++
+
+//   if (!state.gameStarted) {
+//     startGame()
+//   }
+//   if (state.selections <= 2) {
+//     bstyle.classList.add('appeared')
+//   }
+//   if (state.selections === 2) {
+//     const selections = document.querySelectorAll('.appeared:not(.matched')
+
+//     if (selections[0].innerText === selections[1].innerText) {
+//       selections[0].classList.add('matched')
+//       selections[1].classList.add('matched')
+//     }
+//     setTimeout(() => {
+//       disappearCells()
+//     }, 1000)
+//   }
+// }
+
+/////////////////////////
+////
+
+// const disappearCells = () => {
+//   document.querySelectorAll('.bstyle:not(.matched)').forEach((bstyle) => {
+//     bstyle.classList.remove('appeared')
+//   })
+//   state.selections = 0
+// }
+//////////////////////////
+//winnin
+// if (!document.querySelectorAll('.bstyle:not(.appeared').length) {
+//   setTimeout(() => {
+//     selectors.gridContainer.classList.add('appeared')
+//     selectors.win.innerHTML = `
+//     <span class="win-text">
+//       Mastered!<br/>
+//       with <span class="highlight">${state.totalSelected}</span> selection<br />
+//       under <span class="highlight">${state.totalTime}</span> seconds </span>`
+//     clearInterval(state.loop)
+//   }, 1000)
+// }
+
+/ Event Listener
+// const eventListeners = () => {
+//   document.addEventListener('click', (event) => {
+//     const actionTaken = action.Taken
+//     const actionParent = actionTaken.parentElement
+
+//     if (
+//       actionTaken.className.includes('bstyle') &&
+//       !actionParent.className.includes('blank')
+//     ) {
+//       blankStyle(actionParent)
+//     } else if (
+//       actionTaken.nodeName === 'BUTTON' &&
+//       !actionTaken.className.includes('disabled')
+//     ) {
+//       startGame()
+//     }
+//   })
+// }
+// generateGame()
+// attacheventListeners()

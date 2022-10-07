@@ -21,7 +21,7 @@ class Tile {
 const beers = [
   new Tile(
     'kolsch',
-    // 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2xq3SO9jg51xR36qy7c9pf1l8H1xiJzRTSlqlResSSOOnvd0aepy7QrkexjrDhy5GNPM&usqp=CAU',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2xq3SO9jg51xR36qy7c9pf1l8H1xiJzRTSlqlResSSOOnvd0aepy7QrkexjrDhy5GNPM&usqp=CAU',
     'stange'
   ),
   new Tile(
@@ -65,7 +65,7 @@ const beers = [
 const glass = [
   new Tile(
     'stange',
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYCdMR9nPVifq5PLvSlycGMgZR_YwyzF9mMw&usqp=CAU',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRknQOUZvA_5o8hXBkKY2Ox0Wiakk8_oKptNrZsuYsZOFOQzrh-n5FFirBLNvdo-bZCDxs&usqp=CAU',
     'kolsch'
   ),
   new Tile(
@@ -107,9 +107,16 @@ const glass = [
 
 //function for pairmatch
 const checkIsMatch = (tile1, tile2) => {
-  if (tile1.id === tile2.innerText) {
+  if (tile1.pair === tile2.name || tile1.name === tile2.pair) {
+    console.log(
+      `checkIsMatch:: Match found tile1: ${tile1.name}, tile2: ${tile2.name}`
+    )
     return true
   }
+
+  console.log(
+    `checkIsMatch:: Match not found tile1: ${tile1.name}, tile2: ${tile2.name}`
+  )
   return false
 }
 
@@ -166,7 +173,8 @@ let clicks = 0
 //////////////////////////
 
 // const container = document.getElementById('container')
-
+///////////////////////////////
+//Function for
 function makeRows(array1, array2) {
   const items = [...array1, ...array2]
 
@@ -184,21 +192,43 @@ makeRows(beers, glass)
 
 ///////////////////////////
 //Grid-works
-// document.addEventListener('DOMContentLoaded', function () {
-//   // arrangeCell()
-//   createFrame(grid, gridItems)
-//   arrangeCell()
-//   playAgain.addEventListener('click', replay)
+document.addEventListener('DOMContentLoaded', function () {
+  // arrangeCell()
 
-///////////click function for img
-//   imgs = document.querySelectorAll('img')
-//   Array.from(imgs).forEach((img) => img.addEventListener('click', flipCell))
-// })
+  createFrame(grid, gridItems)
+  arrangeCell()
+  playAgain.addEventListener('click', replay)
 
-//Arrange cellContent
-// function arrangeCell() {
-//   beers, glass.sort(() => 0.5 - Math.random())
-// }
+  // Flipping Cells
+  const gridItems = document.querySelectorAll('.grid-item')
+
+  // gridItems.forEach((item) => {
+  //   item.addEventListener('click', flipCell)
+
+  ///////////click function for img
+  imgs = document.querySelectorAll('img')
+  gridItems.from(imgs).forEach((img) => img.addEventListener('click', flipCell))
+})
+/////////////////////////////////
+//create board functions
+function createFrame(grid, array) {
+  popup.style.display = 'none'
+  array.forEach((arr, index) => {
+    let img = document.createElement('img')
+    img.setAttribute(
+      'src',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ862_xCOOcyiOrzpfozwKfgppGNm7mcpxy_w&usqp=CAU'
+    )
+    img.setAttribute('data-id', index)
+    grid.appendChild(img)
+  })
+}
+//////////////////////////////////
+//arrangeCell function
+function arrangeCell() {
+  gridItems.sort(() => 0.5 - Math.random())
+}
+
 // Flipping Cells
 const gridItems = document.querySelectorAll('.grid-item')
 
@@ -207,18 +237,32 @@ gridItems.forEach((item) => {
 })
 
 function flipCell(e) {
+  let imgs = document.querySelectorAll('img')
+  let firstCell = cellId[0]
+  let secondCell = cellId[1]
   cellsSelected.push(e.target)
   e.target.classList.add('flip')
+
   // e.target.setAttribute('src', [selected].img)
   if (cellsSelected.length === 2) {
-    cellsPaired += 1
-    scoreBoard.innerHTML = cellsPaired
-    setTimeout(checkIsMatch, 500)
     if (checkIsMatch(cellsSelected[0], cellsSelected[1])) {
+      alert('pair!')
+
+      cellsPaired += 1
+      scoreBoard.innerHTML = cellsPaired
+      setTimeout(checkPaired, 500)
     } else {
-      //       imgs[firstCard].setAttribute("src", "blank.png");
-      // imgs[secondCard].setAttribute("src", "blank.png"); alert("wrong, please try again"); imgs[firstCard].classList.remove("flip"); imgs[secondCard].classList.remove("flip");
-      console.log('not a match')
+      imgs[firstCell].setAttribute(
+        'src',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ862_xCOOcyiOrzpfozwKfgppGNm7mcpxy_w&usqp=CAU'
+      )
+      imgs[secondCell].setAttribute(
+        'src',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ862_xCOOcyiOrzpfozwKfgppGNm7mcpxy_w&usqp=CAU'
+      )
+      alert('wrong, please try again')
+      imgs[firstCell].classList.remove('flip')
+      imgs[secondCell].classList.remove('flip')
     }
     cellsSelected = []
     cellId = []
@@ -228,7 +272,7 @@ function flipCell(e) {
 
   ///////////////////////////////////////////////////////
   //pairchecked
-  function checkWon() {
+  function checkPaired() {
     if (cellsPaired == gridItems.length / 2) {
       alert('win!')
       setTimeout(() => (popup.style.display = 'flex'), 300)
@@ -242,7 +286,7 @@ function replay() {
   createFrame(grid, gridItems)
   cellsPaired = 0
   clicks = 0
-  clickBoard.innerHTML = 0
+  clickGrid.innerHTML = 0
   scoreBoard.innerHTML = 0
   popup.style.display = 'none'
 }

@@ -118,7 +118,7 @@ button{
     background-position:center;
 }
 #ipa{
-    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2xq3SO9jg51xR36qy7c9pf1l8H1xiJzRTSlqlResSSOOnvd0aepy7QrkexjrDhy5GNPM&usqp=CAU");
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbQG5HEOaco9ftp2Re2-7slYNEf105UaPAVg&usqp=CAU");
     background-size: 80% 80%;
     background-repeat:no-repeat;
     background-position:center;
@@ -138,7 +138,7 @@ button{
 
 /* beers */
 #stange{
-    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYCdMR9nPVifq5PLvSlycGMgZR_YwyzF9mMw&usqp=CAU");
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRknQOUZvA_5o8hXBkKY2Ox0Wiakk8_oKptNrZsuYsZOFOQzrh-n5FFirBLNvdo-bZCDxs&usqp=CAU");
     background-size: 80% 80%;
     background-repeat:no-repeat;
     background-position:center;
@@ -181,7 +181,7 @@ button{
     background-position:center;
 }
 #nonic{
-    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRby7ck-edZlm-WHnRdjDGHSWsySazc3A1FhQ&usqp=CAU");
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOy_db15d6RTqZKWbNyqul8L-5mdMEsZTorA&usqp=CAU");
     background-size: 80% 80%;
     background-repeat:no-repeat;
     background-position:center;
@@ -259,7 +259,7 @@ button{
   
   .grid-item {
     color: transparent;
-    
+
     padding: 1em;
     border: 1px solid rgb(54, 134, 98);
     height: 250px;
