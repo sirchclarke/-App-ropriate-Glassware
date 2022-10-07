@@ -105,6 +105,25 @@ const glass = [
   )
 ]
 
+////////////////////////////////
+//Defined variables Game Logic Here
+
+const grid = document.querySelector('.grid')
+const scoreBoard = document.querySelector('.scoreBoard')
+const selection = document.querySelector('.selection')
+let popup = document.querySelector('.popup')
+let playAgain = document.querySelector('.playAgain')
+const clickGrid = document.querySelector('.clickGrid')
+const win = document.querySelector('.win')
+const start = document.querySelector('button')
+
+let imgs
+let cellId = []
+let cellsSelected = []
+let cellsPaired = 0
+let clicks = 0
+
+////////////////////////////////
 //function for pairmatch
 const checkIsMatch = (tile1, tile2) => {
   if (tile1.pair === tile2.name || tile1.name === tile2.pair) {
@@ -119,60 +138,6 @@ const checkIsMatch = (tile1, tile2) => {
   )
   return false
 }
-
-////////////////////////////////
-//Defined variables Game Logic Here
-
-const grid = document.querySelector('.grid')
-const scoreBoard = document.querySelector('.scoreBoard')
-const selection = document.querySelector('.selection')
-let popup = document.querySelector('.popup')
-let playAgain = document.querySelector('.playAgain')
-const clickGrid = document.querySelector('.clickGrid')
-// clock: document.querySelector('.clock'),
-
-// restartButton: document.getElementById('restartButton'),
-const win = document.querySelector('.win')
-const start = document.querySelector('button')
-
-let imgs
-let cellId = []
-let cellsSelected = []
-let cellsPaired = 0
-let clicks = 0
-
-////////////////////////////////
-// Shuffling through
-// const pullsRandom = (array, items) => {
-//   const cloneArray = [...array]
-//   const randomPulls = []
-//   for (let index = 0; index < items; index++) {
-//     const randomIndex = Math.floor(math.random() * cloneArray.length)
-//     randomPulls.push(cloneArray[randomIndex])
-//     cloneArray.splice(randomIndex, 1)
-//   }
-//   return randomPulls
-// }
-
-// const shuffle = (array) => {
-//   const cloneArray = [...array]
-
-//   for (let index = cloneArray.length - 1; index > 0; index--) {
-//     const randomIndex = Math.floor(Math.random() * (index + 1))
-//     const original = cloneArray[index]
-
-//     cloneArray[index] = cloneArray[randomIndex]
-//     cloneArray[randomIndex] = original
-//   }
-
-//   return cloneArray
-// }
-
-/////////////////////////
-
-//////////////////////////
-
-// const container = document.getElementById('container')
 ///////////////////////////////
 //Function for
 function makeRows(array1, array2) {
@@ -187,28 +152,26 @@ function makeRows(array1, array2) {
     grid.appendChild(cell).className = 'grid-item'
   }
 }
-
 makeRows(beers, glass)
 
 ///////////////////////////
 //Grid-works
 document.addEventListener('DOMContentLoaded', function () {
   // arrangeCell()
-
+  const gridItems = document.querySelectorAll('.grid-item')
   createFrame(grid, gridItems)
   arrangeCell()
   playAgain.addEventListener('click', replay)
 
   // Flipping Cells
-  const gridItems = document.querySelectorAll('.grid-item')
 
   // gridItems.forEach((item) => {
   //   item.addEventListener('click', flipCell)
-
   ///////////click function for img
   imgs = document.querySelectorAll('img')
-  gridItems.from(imgs).forEach((img) => img.addEventListener('click', flipCell))
+  Array.from(imgs).forEach((img) => img.addEventListener('click', flipCell))
 })
+
 /////////////////////////////////
 //create board functions
 function createFrame(grid, array) {
@@ -230,55 +193,62 @@ function arrangeCell() {
 }
 
 // Flipping Cells
-const gridItems = document.querySelectorAll('.grid-item')
+// const gridItems = document.querySelectorAll('.grid-item')
 
 gridItems.forEach((item) => {
   item.addEventListener('click', flipCell)
 })
 
-function flipCell(e) {
+function flipCard() {
+  let selected = this.dataset.id
+  let clicked = gridItems[selected].name
+  cellsSelected.push(clicked)
+
+  cellId.push(selected)
+  this.classList.add('flip')
+  this.setAttribute('src', gridItems[selected].img)
+  if (cellId.length === 2) {
+    setTimeout(checkMatch, 500)
+  }
+}
+function checkMatch() {
   let imgs = document.querySelectorAll('img')
   let firstCell = cellId[0]
   let secondCell = cellId[1]
-  cellsSelected.push(e.target)
-  e.target.classList.add('flip')
+  if (cellsSelected[0] === cellsSelected[1] && firstCell !== secondCell) {
+    alert('pair!')
 
-  // e.target.setAttribute('src', [selected].img)
-  if (cellsSelected.length === 2) {
-    if (checkIsMatch(cellsSelected[0], cellsSelected[1])) {
-      alert('pair!')
-
-      cellsPaired += 1
-      scoreBoard.innerHTML = cellsPaired
-      setTimeout(checkPaired, 500)
-    } else {
-      imgs[firstCell].setAttribute(
-        'src',
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ862_xCOOcyiOrzpfozwKfgppGNm7mcpxy_w&usqp=CAU'
-      )
-      imgs[secondCell].setAttribute(
-        'src',
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ862_xCOOcyiOrzpfozwKfgppGNm7mcpxy_w&usqp=CAU'
-      )
-      alert('wrong, please try again')
-      imgs[firstCell].classList.remove('flip')
-      imgs[secondCell].classList.remove('flip')
-    }
-    cellsSelected = []
-    cellId = []
-    clicks += 1
-    clickGrid.innerHTML = clicks
+    cellsPaired += 1
+    scoreBoard.innerHTML = cellsPaired
+    setTimeout(checkPaired)
+  } else {
+    imgs[firstCell].setAttribute(
+      'src',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ862_xCOOcyiOrzpfozwKfgppGNm7mcpxy_w&usqp=CAU'
+    )
+    imgs[secondCell].setAttribute(
+      'src',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ862_xCOOcyiOrzpfozwKfgppGNm7mcpxy_w&usqp=CAU'
+    )
+    alert('wrong, please try again')
+    imgs[firstCell].classList.remove('flip')
+    imgs[secondCell].classList.remove('flip')
   }
+  cellsSelected = []
+  cellId = []
+  clicks += 1
+  clickGrid.innerHTML = clicks
+}
 
-  ///////////////////////////////////////////////////////
-  //pairchecked
-  function checkPaired() {
-    if (cellsPaired == gridItems.length / 2) {
-      alert('win!')
-      setTimeout(() => (popup.style.display = 'flex'), 300)
-    }
+///////////////////////////////////////////////////////
+//pairchecked
+function checkPaired() {
+  if (cellsPaired == gridItems.length / 2) {
+    alert('win!')
+    setTimeout(() => (popup.style.display = 'flex'), 300)
   }
 }
+
 // setTimeout(checkIsMatch, 500)
 function replay() {
   arrangeCell()
