@@ -5,6 +5,9 @@
     --color-set:#0a0b0b; 
     --line: 10px;
     }
+    .landTitle{
+      margin: 20px auto;  
+    }
     .game{
         position: absolute;
         top: 50%;
@@ -52,7 +55,7 @@ button{
     transition: transform 0.5s; 
     } 
     
-    .grid img.flip { 
+    .grid img.flipCell { 
     transform: rotateY(180deg); 
     } 
     
@@ -223,13 +226,7 @@ button{
     user-select: none;
 }
 
-.bstyle.appeared .bstyle-face {
-    transform: rotateY(180deg) rotateZ(50deg);
-}
 
-.bstyle.appeared .bstyle-blank {
-    transform: rotateY(0) rotateZ(0);
-}
 .grid{
     width: 80vw;
     height: max-content;

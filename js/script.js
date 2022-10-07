@@ -1,13 +1,3 @@
-////////////////////////////////
-// Global Variables Here
-// const state = {
-//   beginMatch: false,
-//   selections: 0,
-//   totalSelected: 0,
-//   totalTime: 0,
-//   loop: null
-// }
-
 //////////////////////////////
 class Tile {
   constructor(id, img, pair) {
@@ -127,15 +117,9 @@ let clicks = 0
 //function for pairmatch
 const checkIsMatch = (tile1, tile2) => {
   if (tile1.pair === tile2.name || tile1.name === tile2.pair) {
-    console.log(
-      `checkIsMatch:: Match found tile1: ${tile1.name}, tile2: ${tile2.name}`
-    )
     return true
   }
 
-  console.log(
-    `checkIsMatch:: Match not found tile1: ${tile1.name}, tile2: ${tile2.name}`
-  )
   return false
 }
 ///////////////////////////////
@@ -186,20 +170,22 @@ function createFrame(grid, array) {
     grid.appendChild(img)
   })
 }
+
 //////////////////////////////////
 //arrangeCell function
-function arrangeCell() {
-  gridItems.sort(() => 0.5 - Math.random())
-}
+// function arrangeCell() {
+//   const gridItems = document.querySelectorAll('.grid-item')
+//   gridItems.sort(() => 0.5 - Math.random())
+// }
 
 // Flipping Cells
-// const gridItems = document.querySelectorAll('.grid-item')
+const gridItems = document.querySelectorAll('.grid-item')
 
 gridItems.forEach((item) => {
   item.addEventListener('click', flipCell)
 })
 
-function flipCard() {
+function flipCell() {
   let selected = this.dataset.id
   let clicked = gridItems[selected].name
   cellsSelected.push(clicked)
@@ -231,8 +217,8 @@ function checkMatch() {
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ862_xCOOcyiOrzpfozwKfgppGNm7mcpxy_w&usqp=CAU'
     )
     alert('wrong, please try again')
-    imgs[firstCell].classList.remove('flip')
-    imgs[secondCell].classList.remove('flip')
+    imgs[firstCell].classList.remove('flipCell')
+    imgs[secondCell].classList.remove('flipCell')
   }
   cellsSelected = []
   cellId = []
